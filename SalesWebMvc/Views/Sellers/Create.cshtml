@@ -1,0 +1,44 @@
+﻿<!-- declarar que a view terá a disposição um obj Seller, com isso o compilador já irá entender os atributos dos inputs e labels -->
+@model SalesWebMvc.Models.Seller
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<h4>Seller</h4>
+<hr />
+
+<!-- row para ocupar a largura da tela -->
+<div class="row">
+    <!-- o bootstrap divide a tela em 12 partes, 4 para ocupar 4/12 ou 1/3 da tela -->
+    <div class="col-md-4">
+        <!-- Enviar o formulário para a ação Create (porém no método POST) -->
+        <form asp-action="Create">
+            <div class="form-group">
+                <!-- asp-for define o label que irá aparecer no input -->
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+            </div>
+            <div class="form-group">
+                <!-- asp-for define o label que irá aparecer no input -->
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+            </div>
+            <div class="form-group">
+                <!-- asp-for define o label que irá aparecer no input -->
+                <label asp-for="BirthDate" class="control-label"></label>
+                <input asp-for="BirthDate" class="form-control" />
+            </div>
+            <div class="form-group">
+                <!-- asp-for define o label que irá aparecer no input -->
+                <label asp-for="BaseSalary" class="control-label"></label>
+                <input asp-for="BaseSalary" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>

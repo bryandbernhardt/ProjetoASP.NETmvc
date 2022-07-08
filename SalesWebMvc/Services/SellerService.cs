@@ -21,5 +21,11 @@ namespace SalesWebMvc.Services
             //operação síncrona, roda o acesso ao bd e a aplicação fica bloqueada esperando terminar
             return _context.Seller.ToList();
         }
+
+        public void Insert(Seller obj)
+        {
+            _context.Add(obj);
+            _context.SaveChanges();
+        }
     }
 }
