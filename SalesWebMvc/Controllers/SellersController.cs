@@ -25,7 +25,7 @@ namespace SalesWebMvc.Controllers
         public IActionResult Index()
         {
             //chamar operação FindAll
-            List<Models.Seller> list = _sellerService.FindAll();
+            var list = _sellerService.FindAll();
 
             //passar lista como argumento para o método view, para gerar um IActionResult contendo a lista
             return View(list);
@@ -77,6 +77,22 @@ namespace SalesWebMvc.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public IActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            // usamos o id.Value para pegar o valor caso exista (pois pode ser null)
+            var obj = _sellerService.FindById(id.Value);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+
+            return View(obj);
+        }
 
     }
 }
