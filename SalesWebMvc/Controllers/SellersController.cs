@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SalesWebMvc.Models;
+using SalesWebMvc.Models.ViewModels;
 using SalesWebMvc.Services;
 using System;
 using System.Collections.Generic;
@@ -12,11 +13,13 @@ namespace SalesWebMvc.Controllers
     {
         //declarar dependência para o SellerService
         private readonly SellerService _sellerService;
+        private readonly DepartmentService _departmentService;
 
         //contrutor para injetar a dependência
-        public SellersController(SellerService sellerService)
+        public SellersController(SellerService sellerService, DepartmentService departmentService)
         {
             _sellerService = sellerService;
+            _departmentService = departmentService;
         }
 
         public IActionResult Index()
@@ -30,7 +33,12 @@ namespace SalesWebMvc.Controllers
 
         public IActionResult Create()
         {
-            return View();
+            // chama nosso método FindAll do serviço para trazer os departamentos
+            var departments = _departmentService.FindAll();
+            // inicia noss ViewModel já contendo esses departamentos
+            var viewModel = new SellerFormViewModel { Departments = departments };
+            // tela de cadatro inicia já recebendo o objeto com os departamentos
+            return View(viewModel);
         }
 
         //indica que a ação será uma ação de post
