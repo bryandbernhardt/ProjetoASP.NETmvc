@@ -36,7 +36,7 @@ namespace SalesWebMvc.Controllers
             // chama nosso método FindAll do serviço para trazer os departamentos
             var departments = _departmentService.FindAll();
             // inicia noss ViewModel já contendo esses departamentos
-            var viewModel = new SellerFormViewModel { Departments = departments };
+            var viewModel = new SellerFormViewModel { Departments = departments, Seller = new Seller() };
             // tela de cadatro inicia já recebendo o objeto com os departamentos
             return View(viewModel);
         }
