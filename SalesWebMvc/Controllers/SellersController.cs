@@ -52,5 +52,31 @@ namespace SalesWebMvc.Controllers
             //redireciona para a página principal exibindo o dado adicionado
             return RedirectToAction(nameof(Index));
         }
+
+        public IActionResult Delete (int? id)
+        {
+            if(id == null)
+            {
+                return NotFound();
+            }
+
+            // usamos o id.Value para pegar o valor caso exista (pois pode ser null)
+            var obj = _sellerService.FindById(id.Value);
+            if (obj == null){
+                return NotFound();
+            }
+
+            return View(obj);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Delete(int id)
+        {
+            _sellerService.Remove(id);
+            return RedirectToAction(nameof(Index));
+        }
+
+
     }
 }
