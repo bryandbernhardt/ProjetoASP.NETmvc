@@ -2,8 +2,7 @@
 @model SalesWebMvc.Models.ViewModels.SellerFormViewModel
 
 @{
-    ViewData["Title"] = "Create";
-    
+    ViewData["Title"] = "Edit";
 }
 
 <h2>@ViewData["Title"]</h2>
@@ -16,7 +15,8 @@
     <!-- o bootstrap divide a tela em 12 partes, 4 para ocupar 4/12 ou 1/3 da tela -->
     <div class="col-md-4">
         <!-- Enviar o formulário para a ação Create (porém no método POST) -->
-        <form asp-action="Create">
+        <form asp-action="Edit">
+            <input type="hidden" asp-for="Seller.Id" />
             <div class="form-group">
                 <!-- asp-for define o label que irá aparecer no input -->
                 <label asp-for="Seller.Name" class="control-label"></label>
@@ -44,7 +44,7 @@
             </div>
 
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </form>
     </div>
